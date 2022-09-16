@@ -1,0 +1,19 @@
+{
+  "name": "dumper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taranovskiy/dumper.git"
+  },
+  "author": "Vladimir Taranovskiy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Taranovskiy/dumper/issues"
+  },
+  "homepage": "https://github.com/Taranovskiy/dumper#readme"
+}
