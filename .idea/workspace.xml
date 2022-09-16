@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="370fb8dd-9371-4eca-ac78-841cc07c0883" name="Changes" comment="" />
+    <list default="true" id="370fb8dd-9371-4eca-ac78-841cc07c0883" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,11 +41,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1663334876843</updated>
-      <workItem from="1663334877920" duration="683000" />
+      <workItem from="1663334877920" duration="998000" />
     </task>
+    <task id="LOCAL-00001" summary="npm init">
+      <created>1663335598305</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1663335598305</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="npm init" />
+    <option name="LAST_COMMIT_MESSAGE" value="npm init" />
   </component>
 </project>

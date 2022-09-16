@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Taranovskiy/dumper/issues"
   },
-  "homepage": "https://github.com/Taranovskiy/dumper#readme"
+  "homepage": "https://github.com/Taranovskiy/dumper#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
