@@ -1,32 +1,25 @@
-require('dotenv').config();
+const { resolve } = require('node:path');
+const { unlink } = require('node:fs/promises');
+const { exportDatasetFromSanity } = require('./servises/sanity');
+const { uploadFileToS3 } = require('./servises/aws');
+const { schedule } = require('node-cron');
 
-const { mkdir } = require('node:fs/promises');
-const { join } = require('node:path');
-const createSanityClient = require('@sanity/client');
-const exportDataset = require('@sanity/export');
-
-const tempDir = join(__dirname, '.tmp');
 const fileName = `${new Date().toJSON().slice(0, 10)}.tar.gz`;
+const filePath = resolve(__dirname, fileName);
 
-async function makeDirectory() {
-  return await mkdir(tempDir);
+async function executeBackup() {
+  try {
+    await exportDatasetFromSanity({ filePath });
+    await uploadFileToS3({ fileName, filePath });
+  } finally {
+    unlink(filePath).catch((error) => console.error(error));
+  }
 }
 
-makeDirectory().catch(console.error);
-
-const client = createSanityClient({
-  projectId: process.env.SANITY_PROJECT_ID,
-  dataset: 'production',
-  apiVersion: '1',
-  token: process.env.SANITY_API_TOKEN,
-  useCdn: true,
+const task = schedule('* * * * *', () => {
+  executeBackup().catch((error) => {
+    console.log('error ---> ', error);
+  });
 });
 
-exportDataset({
-  client,
-  dataset: 'production',
-  outputPath: join(tempDir, fileName),
-  assets: true,
-  raw: false,
-  drafts: true,
-});
+task.start();
