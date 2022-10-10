@@ -12,19 +12,17 @@ const client = createSanityClient({
 });
 
 async function exportDatasetFromSanity({ filePath }) {
-  try {
-    await exportDataset({
-      client,
-      dataset: process.env.SANITY_DATASET_NAME,
-      outputPath: filePath,
-      assets: false,
-      raw: false,
-      drafts: true,
-      onProgress: (progressLog) => console.log(progressLog),
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  await exportDataset({
+    client,
+    dataset: process.env.SANITY_DATASET_NAME,
+    outputPath: filePath,
+    assets: process.env.SANITY_NEED_EXPORT_ASSETS,
+    raw: false,
+    drafts: process.env.SANITY_NEED_EXPORT_DRAFTS,
+    onProgress: process.env.SANITY_NEED_PROCESS_LOGING
+      ? (progressLog) => console.log(progressLog)
+      : '',
+  });
 }
 
 module.exports = {

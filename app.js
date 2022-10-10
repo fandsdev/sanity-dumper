@@ -1,24 +1,34 @@
 const { resolve } = require('node:path');
 const { unlink } = require('node:fs/promises');
 const { exportDatasetFromSanity } = require('./servises/sanity');
-const { uploadFileToS3 } = require('./servises/aws');
+const {
+  uploadFile,
+} = require('./servises/storage-providers/google-cloud-storage');
 const { schedule } = require('node-cron');
+require('dotenv').config();
 
-const fileName = `${new Date().toJSON().slice(0, 10)}.tar.gz`;
-const filePath = resolve(__dirname, fileName);
+const generateFileName = () => `${new Date().toJSON()}.tar.gz`;
 
 async function executeBackup() {
+  const fileName = generateFileName();
+  const filePath = resolve(__dirname, fileName);
+
   try {
     await exportDatasetFromSanity({ filePath });
-    await uploadFileToS3({ fileName, filePath });
+    await uploadFile({ fileName, filePath });
   } finally {
     unlink(filePath).catch((error) => console.error(error));
   }
 }
 
+let currentRetryNumber = 1;
+const maxRetryNumber = Number(process.env.MAX_RETRY_NUMBER) || 5;
+
 const task = schedule('* * * * *', () => {
   executeBackup().catch((error) => {
-    console.log('error ---> ', error);
+    console.error('currentRetryNumber:', currentRetryNumber, '\n', error);
+    currentRetryNumber += 1;
+    if (currentRetryNumber > maxRetryNumber) process.exit(1);
   });
 });
 

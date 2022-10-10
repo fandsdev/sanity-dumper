@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "node app.js",
     "test": "echo \\\"Error: no test specified\\\" && exit 1",
@@ -19,8 +22,7 @@
   },
   "homepage": "https://github.com/Taranovskiy/dumper#readme",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.171.0",
-    "@aws-sdk/credential-providers": "^3.171.0",
+    "@google-cloud/storage": "^6.5.2",
     "@sanity/client": "^3.4.1",
     "@sanity/export": "^2.33.2",
     "dotenv": "^16.0.2",
