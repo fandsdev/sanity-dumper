@@ -16,9 +16,9 @@ async function exportDatasetFromSanity({ filePath }) {
     client,
     dataset: process.env.SANITY_DATASET_NAME,
     outputPath: filePath,
-    assets: process.env.SANITY_NEED_EXPORT_ASSETS,
+    assets: Boolean(process.env.SANITY_NEED_EXPORT_ASSETS),
     raw: false,
-    drafts: process.env.SANITY_NEED_EXPORT_DRAFTS,
+    drafts: Boolean(process.env.SANITY_NEED_EXPORT_DRAFTS),
     onProgress: process.env.SANITY_NEED_PROCESS_LOGING
       ? (progressLog) => console.log(progressLog)
       : '',

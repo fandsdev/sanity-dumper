@@ -24,12 +24,15 @@ async function executeBackup() {
 let currentRetryNumber = 1;
 const maxRetryNumber = Number(process.env.MAX_RETRY_NUMBER) || 5;
 
-const task = schedule('* * * * *', () => {
-  executeBackup().catch((error) => {
-    console.error('currentRetryNumber:', currentRetryNumber, '\n', error);
-    currentRetryNumber += 1;
-    if (currentRetryNumber > maxRetryNumber) process.exit(1);
-  });
-});
+const task = schedule(
+  process.env.CRON_SCHEDULE_EXPRESSION || '0 0 * * *',
+  () => {
+    executeBackup().catch((error) => {
+      console.error('currentRetryNumber:', currentRetryNumber, '\n', error);
+      currentRetryNumber += 1;
+      if (currentRetryNumber > maxRetryNumber) process.exit(1);
+    });
+  }
+);
 
 task.start();
