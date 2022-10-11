@@ -1,4 +1,4 @@
-# Dumper
+# Sanity-dumper
 
 ### Why?
 To export [sanity](https://www.sanity.io/) documents, assets(optional) and save to some cloud storage on a schedule.
