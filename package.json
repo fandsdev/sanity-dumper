@@ -2,9 +2,12 @@
   "name": "sanity-dumper",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "node app.js",
     "lint": "eslint --fix ."
   },
   "repository": {
@@ -18,7 +21,11 @@
   },
   "homepage": "https://github.com/Taranovskiy/dumper#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "@google-cloud/storage": "^6.5.2",
+    "@sanity/client": "^3.4.1",
+    "@sanity/export": "^2.33.2",
+    "dotenv": "^16.0.2",
+    "node-cron": "^3.0.2"
   },
   "devDependencies": {
     "eslint": "^8.22.0",
