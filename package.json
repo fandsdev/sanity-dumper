@@ -24,6 +24,7 @@
     "@google-cloud/storage": "^6.5.2",
     "@sanity/client": "^3.4.1",
     "@sanity/export": "^2.33.2",
+    "axios": "^1.1.3",
     "dotenv": "^16.0.2",
     "node-cron": "^3.0.2"
   },
