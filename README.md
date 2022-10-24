@@ -11,5 +11,5 @@ All you need is to set the necessary credentials and settings through environmen
 The list of the environment variables can be found in the file `/.env.example`
 
 ### What else?
-You can run the application in a docker-container.
+You can run the application in a docker-container.  
 As a simple monitoring system, it is used https://healthchecks.io/
